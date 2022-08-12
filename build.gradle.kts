@@ -24,6 +24,14 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.jetbrains.kotlin:kotlin-noarg:1.7.10")
+    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.9")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.9")
+    implementation("org.flywaydb:flyway-maven-plugin:9.1.3")
+
+
+
 }
 
 tasks.withType<KotlinCompile> {
@@ -32,6 +40,8 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "11"
     }
 }
+
+
 
 tasks.withType<Test> {
     useJUnitPlatform()
