@@ -17,8 +17,6 @@ class MainRestController(
     fun getAllUser() = userService.getAll()
 
     @PostMapping()
-    fun saveUser(@RequestBody user: User): Int {
-        userService.save(user)
-        return user.id
-    }
+    fun saveUser(@RequestBody user: User) = userService.save(user)
+
 }

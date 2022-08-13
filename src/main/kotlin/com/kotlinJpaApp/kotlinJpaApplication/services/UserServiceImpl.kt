@@ -13,7 +13,8 @@ class UserServiceImpl(
 
     override fun getAll(): MutableList<User> = userRepository.findAll()
 
-    override fun save(user: User) {
+    override fun save(user: User): Int {
         userRepository.save(user)
+        return user.id
     }
 }

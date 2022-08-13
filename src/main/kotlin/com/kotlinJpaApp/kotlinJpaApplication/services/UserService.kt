@@ -9,5 +9,5 @@ interface UserService {
 
     fun getAll(): List<User>
 
-    fun save(user: User)
+    fun save(user: User): Int
 }
