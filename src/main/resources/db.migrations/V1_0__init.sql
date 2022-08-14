@@ -1,4 +1,4 @@
-create table if not exists users
+CREATE TABLE IF NOT EXISTS users
 (
     id              serial,
     email           varchar not null,
@@ -7,6 +7,3 @@ create table if not exists users
     middle_name      varchar,
     phone           varchar not null
 );
-
-create unique index if not exists cars_id_uindex
-    on users (id);

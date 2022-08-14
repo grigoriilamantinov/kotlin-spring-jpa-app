@@ -1,6 +1,6 @@
 package com.kotlinJpaApp.kotlinJpaApplication.entity
 
-class UserRequest(
+data class UserRequest(
     val email: String,
     val lastName: String,
     val firstName: String,
@@ -10,7 +10,6 @@ class UserRequest(
     companion object {
         fun of(userFromRequest: UserRequest): User {
             return User(
-                null,
                 userFromRequest.email,
                 userFromRequest.lastName,
                 userFromRequest.firstName,

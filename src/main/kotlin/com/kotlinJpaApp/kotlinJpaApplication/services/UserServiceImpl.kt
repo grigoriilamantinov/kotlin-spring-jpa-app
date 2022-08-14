@@ -18,8 +18,8 @@ class UserServiceImpl(private val userRepository: UserRepository): UserService {
     }
 
     override fun save(userFromRequest: UserRequest): UserResponse {
-        val user = UserRequest.of(userFromRequest)
-        return UserResponse.of(userRepository.save(user))
+        val userToSave = UserRequest.of(userFromRequest)
+        return UserResponse.of(userRepository.save(userToSave))
     }
 
 }

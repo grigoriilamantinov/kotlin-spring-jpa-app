@@ -51,19 +51,11 @@ internal class MainRestControllerTest(@Autowired val mockMvc: MockMvc) {
         "Diamond",
         "8-900-90-90",
     )
-    private val userResponse2 = UserResponse(
-        null,
-        "example@linux.com",
-        "Boson",
-        "Bob",
-        "Diamond",
-        "8-900-90-90",
-    )
 
     @Test
     fun saveUser() {
         val mapper = jacksonObjectMapper()
-        every { userService.save(userRequest) } returns userResponse2
+        every { userService.save(userRequest) } returns userResponse
 
         mockMvc.perform(post(USERS_URL)
             .content(mapper.writeValueAsString(userRequest))

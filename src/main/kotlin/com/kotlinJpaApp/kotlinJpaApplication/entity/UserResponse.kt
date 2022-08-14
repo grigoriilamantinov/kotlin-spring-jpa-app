@@ -1,8 +1,7 @@
 package com.kotlinJpaApp.kotlinJpaApplication.entity
 
-
 data class UserResponse(
-    val id: Int?,
+    val id: Int,
     val email: String,
     val lastName: String,
     val firstName: String,
