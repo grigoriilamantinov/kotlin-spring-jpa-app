@@ -11,10 +11,8 @@ class UserServiceImpl(
 
     override fun getById(id: Int) = userRepository.getReferenceById(id)
 
-    override fun getAll(): MutableList<User> = userRepository.findAll()
+    override fun getAll(): List<User> = userRepository.findAll()
 
-    override fun save(user: User): Int {
-        userRepository.save(user)
-        return user.id
-    }
+    override fun save(user: User) = userRepository.save(user)
+
 }
