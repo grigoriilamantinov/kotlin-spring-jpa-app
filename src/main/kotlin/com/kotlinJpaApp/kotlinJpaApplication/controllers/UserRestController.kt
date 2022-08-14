@@ -1,6 +1,6 @@
 package com.kotlinJpaApp.kotlinJpaApplication.controllers
 
-import com.kotlinJpaApp.kotlinJpaApplication.entity.User
+import com.kotlinJpaApp.kotlinJpaApplication.entity.UserRequest
 import com.kotlinJpaApp.kotlinJpaApplication.services.UserService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -22,6 +22,6 @@ class UserRestController(
     fun getAllUser() = userService.getAll()
 
     @PostMapping
-    fun saveUser(@RequestBody user: User) = userService.save(user)
+    fun saveUser(@RequestBody userRequest: UserRequest) = userService.save(userRequest)
 
 }

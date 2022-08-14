@@ -11,7 +11,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.kotlinJpaApp.kotlinJpaApplication.entity.User
+import com.kotlinJpaApp.kotlinJpaApplication.entity.UserRequest
+import com.kotlinJpaApp.kotlinJpaApplication.entity.UserResponse
 import com.kotlinJpaApp.kotlinJpaApplication.services.UserService
 
 @WebMvcTest
@@ -19,23 +20,23 @@ internal class MainRestControllerTest(@Autowired val mockMvc: MockMvc) {
     @MockkBean
     lateinit var userService: UserService
 
-    private val user = User(
+    private val userResponse = UserResponse(
         1,
-        "example@ya.com",
+        "example@linux.com",
         "Boson",
         "Bob",
         "Diamond",
-        "8-900-90-90"
+        "8-900-90-90",
     )
 
     @Test
     fun getUserById() {
-        every { userService.getById(1) } returns user
-
+        every { userService.getById(1) } returns userResponse
         mockMvc.perform(get(USER_URL))
             .andExpect(status().isOk)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.email").value("example@ya.com"))
+            .andExpect(jsonPath("$.id").value(1))
+            .andExpect(jsonPath("$.email").value("example@linux.com"))
             .andExpect(jsonPath("$.lastName").value("Boson"))
             .andExpect(jsonPath("$.firstName").value("Bob"))
             .andExpect(jsonPath("$.middleName").value("Diamond"))
@@ -43,12 +44,29 @@ internal class MainRestControllerTest(@Autowired val mockMvc: MockMvc) {
 
     }
 
+    private val userRequest = UserRequest(
+        "example@linux.com",
+        "Boson",
+        "Bob",
+        "Diamond",
+        "8-900-90-90",
+    )
+    private val userResponse2 = UserResponse(
+        null,
+        "example@linux.com",
+        "Boson",
+        "Bob",
+        "Diamond",
+        "8-900-90-90",
+    )
+
     @Test
     fun saveUser() {
         val mapper = jacksonObjectMapper()
-        every { userService.save(user) } returns user
+        every { userService.save(userRequest) } returns userResponse2
+
         mockMvc.perform(post(USERS_URL)
-            .content(mapper.writeValueAsString(user))
+            .content(mapper.writeValueAsString(userRequest))
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
