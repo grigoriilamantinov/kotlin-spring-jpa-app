@@ -30,7 +30,7 @@ internal class MainRestControllerTest(@Autowired val mockMvc: MockMvc) {
     )
 
     @Test
-    fun getUserById() {
+    fun shouldGetUserById () {
         every { userService.getById(1) } returns userResponse
         mockMvc.perform(get(USER_URL))
             .andExpect(status().isOk)
@@ -53,7 +53,7 @@ internal class MainRestControllerTest(@Autowired val mockMvc: MockMvc) {
     )
 
     @Test
-    fun saveUser() {
+    fun shouldSaveUserAndGetResponse() {
         val mapper = jacksonObjectMapper()
         every { userService.save(userRequest) } returns userResponse
 
