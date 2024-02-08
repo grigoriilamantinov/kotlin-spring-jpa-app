@@ -11,4 +11,6 @@ interface UserService {
     fun getAll(): List<UserResponse>
 
     fun save(user: UserRequest): UserResponse
+
+    fun getAllPhones (): List<String>
 }

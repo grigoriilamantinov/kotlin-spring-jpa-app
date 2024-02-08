@@ -3,6 +3,7 @@ package com.kotlinJpaApp.kotlinJpaApplication.services
 import com.kotlinJpaApp.kotlinJpaApplication.dao.UserRepository
 import com.kotlinJpaApp.kotlinJpaApplication.entity.UserResponse
 import com.kotlinJpaApp.kotlinJpaApplication.entity.UserRequest
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,6 +21,10 @@ class UserServiceImpl(private val userRepository: UserRepository): UserService {
     override fun save(userFromRequest: UserRequest): UserResponse {
         val userToSave = UserRequest.of(userFromRequest)
         return UserResponse.of(userRepository.save(userToSave))
+    }
+
+    override fun getAllPhones(): List<String> {
+        return userRepository.getPhoneList()
     }
 
 }
